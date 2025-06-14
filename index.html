@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vikings Dart Liveticker</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    header img {
+      max-width: 140px;
+      height: auto;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 1.8em;
+      color: #111;
+      font-weight: bold;
+    }
+
+    .card {
+      background-color: white;
+      width: 100%;
+      max-width: 1200px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 16px;
+    }
+
+    iframe {
+      width: 100%;
+      height: 1500px; /* genug Platz für ganzes Sheet */
+      border: none;
+      border-radius: 8px;
+    }
+
+    footer {
+      margin-top: 20px;
+      color: #777;
+      font-size: 0.9em;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="logo.jpg" alt="Vikings Logo" />
+    <h1>Vikings Dart – Liveticker</h1>
+  </header>
+
+  <div class="card">
+    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQvresvGElNmXmN4nHXxaOfhz6kKnjqCoRJerxRhu-k5ilQz4mJnM2yjl3AM5BNrHWDazeulHZzHY5t/pubhtml?widget=true&amp;headers=false"></iframe>
+  </div>
+
+  <footer>Letzte Aktualisierung alle 30 Sekunden · © Vikings Dartteam</footer>
+
+  <script>
+    setInterval(() => {
+      const iframe = document.querySelector('iframe');
+      iframe.src = iframe.src;
+    }, 30000);
+  </script>
+</body>
+</html>
