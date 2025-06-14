@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Vikings Dart Liveticker (Live)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header img {
+      max-width: 140px;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-size: 1.8em;
+      color: #111;
+    }
+
+    #table-container {
+      max-width: 1000px;
+      margin: 20px auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      padding: 16px;
+    }
+
+    footer {
+      margin-top: 20px;
+      font-size: 0.9em;
+      color: #777;
+    }
+  </style>
+
+  <script type="text/javascript">
+    google.charts.load('current', {'packages':['table']});
+    google.charts.setOnLoadCallback(drawTable);
+
+    function drawTable() {
+      const query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1XNrgMtbBaXoPbkvYEbZuE5eW-3sy2qWUC7di8lTHlPw/gviz/tq?sheet=Sheet1');
+      query.send(function(response) {
+        const data = response.getDataTable();
+        const table = new google.visualization.Table(document.getElementById('table-container'));
+        table.draw(data, {
+          showRowNumber: false,
+          width: '100%',
+          height: '100%',
+          cssClassNames: {
+            headerRow: 'header-row',
+            tableRow: 'table-row',
+            oddTableRow: 'odd-row',
+            selectedTableRow: 'selected-row'
+          }
+        });
+      });
+
+      // Reload every 10 seconds
+      setTimeout(drawTable, 10000);
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="Vikings Logo" />
+    <h1>Vikings Dart – Liveticker (Live)</h1>
+  </header>
+
+  <div id="table-container"></div>
+
+  <footer>Live-Aktualisierung alle 10 Sekunden · © Vikings Dartteam</footer>
+</body>
+</html>
